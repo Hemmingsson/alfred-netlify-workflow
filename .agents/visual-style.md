@@ -54,16 +54,3 @@ Before completion, inspect the output at its documentation size, check light
 and dark SVG/HTML, parse the SVG, and check all affected relative links and
 `git diff --check`. Confirm there is no clipped text, overlapping leader or
 unexplained arrow. Keep edits in generators/specs so regeneration preserves them.
-
-## Why these choices
-
-The 24 November 2026 sessions are the baseline, not templates to copy verbatim:
-
-- Local: <t3-thread://v2/d4c06ace-2f02-4805-89d3-36be52d9506c/a67d8bfb-2728-48bc-86e9-9beb2b96eee6>
-  — white SVG embeds, no titles/eyebrows or sizing jargon, contextual embedding.
-- MacBook: <t3-thread://v2/d7b364f3-a7e2-4fa8-9e7b-1bb622b9cf72/f8281e5e-f40b-4555-b067-4a93b585a7a2>
-  — monospace throughout, fewer labels, real vector icons and action buttons,
-  square navigation/viewport corners, separate three-state sheets, assets/demo
-  split, then adaptive SVG/HTML with light PNGs. The final theme changes were
-  uncommitted there when these skills were written; the release exports still
-  provide the geometry reference, not the final theme implementation.

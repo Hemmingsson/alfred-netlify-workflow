@@ -35,7 +35,11 @@ jobs:
           from pathlib import Path
           import re
 
-          documents = [Path('README.md'), Path('.agents/README.md'), *Path('docs').glob('*.md')]
+          documents = [
+              Path('README.md'), Path('AGENTS.md'), Path('.agents/README.md'),
+              Path('.agents/visual-style.md'), *Path('docs').glob('*.md'),
+              *Path('.agents/skills').glob('create-*/SKILL.md'),
+          ]
           for document in documents:
               text = document.read_text()
               links = re.findall(r'\]\(([^)]+)\)', text)
