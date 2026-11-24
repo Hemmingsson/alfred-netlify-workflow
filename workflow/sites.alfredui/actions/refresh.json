@@ -1,0 +1,25 @@
+[
+  {
+    "type": "json",
+    "src": {
+      "update": {
+        "ids": {
+          "statusLabel": {
+            "text": "Refreshing…"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "script",
+    "async": true,
+    "src": "scripts/ui",
+    "args": [
+      "refresh",
+      "{var:selectedSiteID}",
+      "{var:previewSource}",
+      "{value:searchField.text}"
+    ]
+  }
+]

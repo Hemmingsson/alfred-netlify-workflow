@@ -1,0 +1,9 @@
+.build/
+.swiftpm/
+.DS_Store
+dist/
+demo/.cache/
+
+# Local agent state
+.atelier/
+.claude/

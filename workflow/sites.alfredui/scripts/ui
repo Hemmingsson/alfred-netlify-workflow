@@ -1,0 +1,8 @@
+#!/bin/sh
+# The window's scripts: `scripts/ui <command> …` runs `netlify ui <command> …` (the binary in the workflow root).
+# Prints one JSON action on stdout; errors go to ui-errors.log in the cache folder.
+cd "$(dirname "$0")/../.." || exit 0
+: "${alfred_workflow_cache:=$HOME/Library/Caches/com.runningwithcrayons.Alfred/Workflow Data/work.mattias.alfred.netlify}"
+export alfred_workflow_cache
+mkdir -p "$alfred_workflow_cache"
+exec ./netlify ui "$@" 2>>"$alfred_workflow_cache/ui-errors.log"

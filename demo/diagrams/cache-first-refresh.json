@@ -1,0 +1,129 @@
+{
+  "watermark": false,
+  "fonts": "system",
+  "legend": false,
+  "eyebrow": "",
+  "motion": "trace",
+  "skin": "light",
+  "type": "sequence",
+  "title": "Open now, refresh in the background",
+  "subtitle": "Automatic refresh for a signed-in account with stale cached sites.",
+  "participants": [
+    {
+      "id": "alfred",
+      "label": "Alfred window",
+      "kind": "external"
+    },
+    {
+      "id": "ui",
+      "label": "UI command",
+      "sub": "netlify ui",
+      "focal": true
+    },
+    {
+      "id": "cache",
+      "label": "Local cache",
+      "kind": "store"
+    },
+    {
+      "id": "job",
+      "label": "Refresh job",
+      "sub": "Detached process"
+    },
+    {
+      "id": "api",
+      "label": "Netlify API",
+      "kind": "external"
+    }
+  ],
+  "messages": [
+    [
+      "alfred",
+      "ui",
+      "load"
+    ],
+    [
+      "ui",
+      "cache",
+      "Read snapshot"
+    ],
+    [
+      "cache",
+      "ui",
+      "Cached sites",
+      "reply"
+    ],
+    [
+      "ui",
+      "job",
+      "Launch if stale + idle",
+      "async"
+    ],
+    [
+      "ui",
+      "alfred",
+      "Rows + busy pulse",
+      "reply"
+    ],
+    [
+      "job",
+      "api",
+      "Fetch sites + enrichment"
+    ],
+    [
+      "api",
+      "job",
+      "Site data",
+      "reply"
+    ],
+    [
+      "job",
+      "cache",
+      "Atomic commit if session current"
+    ],
+    [
+      "alfred",
+      "ui",
+      "pulse: every 1.5 s"
+    ],
+    [
+      "ui",
+      "cache",
+      "Read local changes"
+    ],
+    [
+      "cache",
+      "ui",
+      "Sites + pictures + status",
+      "reply"
+    ],
+    [
+      "ui",
+      "alfred",
+      "Changed rows; otherwise status",
+      "reply"
+    ]
+  ],
+  "notes": [
+    {
+      "at": 8,
+      "over": [
+        "cache",
+        "job"
+      ],
+      "text": "Failure: keep cache; record error. No retry on pulse."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ui",
+      "file": "Sources/NetlifyWindow/WindowResponder.swift",
+      "line": 28
+    },
+    {
+      "id": "job",
+      "file": "Sources/NetlifyAPI/RefreshJob.swift",
+      "line": 25
+    }
+  ]
+}

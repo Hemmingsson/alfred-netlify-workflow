@@ -1,0 +1,204 @@
+{
+  "constraints": {
+    "region": "centre"
+  },
+  "id": "sites",
+  "type": "dataview",
+  "placeholder": "No matching sites",
+  "spacing": 2,
+  "behaviour": {
+    "selection": {
+      "wrap": "vertical"
+    }
+  },
+  "events": [
+    {
+      "triggers": "changed",
+      "action": [
+        {
+          "type": "json",
+          "variables": {
+            "selectedSiteID": "{value:self.selected.uid}",
+            "detail": "{value:self.selected.detail}"
+          },
+          "src": {
+            "update": {
+              "ids": "{var:detail}"
+            }
+          }
+        },
+        {
+          "type": "script",
+          "async": true,
+          "src": "scripts/ui",
+          "args": [
+            "selected",
+            "{value:self.selected.uid}",
+            "{var:previewSource}"
+          ]
+        }
+      ]
+    }
+  ],
+  "data": {
+    "type": "basic",
+    "src": []
+  },
+  "cell": {
+    "height": 56,
+    "init": {
+      "rowCell.background": null,
+      "rowTitle.colour": "labelColor",
+      "rowSubtitle.colour": "secondaryLabelColor",
+      "rowAge.colour": "secondaryLabelColor",
+      "rowRepositoryIcon.contenttintcolour": "secondaryLabelColor"
+    },
+    "selected": {
+      "rowCell.background": "alfredSelectedResultBackgroundColor",
+      "rowTitle.colour": "alfredSelectedResultTextColor",
+      "rowSubtitle.colour": "alfredSelectedResultTextColor",
+      "rowAge.colour": "alfredSelectedResultTextColor",
+      "rowState.colour": "alfredSelectedResultTextColor",
+      "rowRepositoryIcon.contenttintcolour": "alfredSelectedResultTextColor"
+    },
+    "root": {
+      "id": "rowCell",
+      "type": "view",
+      "layout": "border",
+      "padding": 8,
+      "spacing": 10,
+      "cornerradius": 8,
+      "menu": "{file:components/row-menu.json}",
+      "events": [
+        {
+          "triggers": "doubleclicked",
+          "action": {
+            "type": "json",
+            "variables": {
+              "target": "{data:openSite}"
+            },
+            "src": {
+              "finish": {
+                "args": "{var:target}"
+              }
+            }
+          }
+        }
+      ],
+      "components": [
+        {
+          "constraints": {
+            "region": "left",
+            "position": "centre",
+            "size": {
+              "width": 64,
+              "height": 40
+            }
+          },
+          "id": "rowThumbnail",
+          "type": "imageview",
+          "resize": "fill",
+          "cornerradius": 5
+        },
+        {
+          "constraints": {
+            "region": "centre",
+            "position": "left",
+            "stretch": "horizontal"
+          },
+          "type": "view",
+          "layout": "inline",
+          "direction": "vertical",
+          "spacing": 2,
+          "components": [
+            {
+              "id": "rowTitle",
+              "type": "label",
+              "linebreak": "truncatemiddle",
+              "font": {
+                "size": 14,
+                "weight": "medium"
+              },
+              "constraints": {
+                "stretch": "horizontal"
+              }
+            },
+            {
+              "constraints": {
+                "stretch": "horizontal"
+              },
+              "type": "view",
+              "layout": "border",
+              "spacing": 5,
+              "components": [
+                {
+                  "constraints": {
+                    "region": "left",
+                    "position": "centre",
+                    "size": {
+                      "width": 12,
+                      "height": 12
+                    }
+                  },
+                  "id": "rowRepositoryIcon",
+                  "type": "imageview",
+                  "resize": "fit",
+                  "contenttintcolour": "secondaryLabelColor"
+                },
+                {
+                  "id": "rowSubtitle",
+                  "type": "label",
+                  "linebreak": "truncatetail",
+                  "font": {
+                    "size": 12
+                  },
+                  "constraints": {
+                    "region": "centre",
+                    "position": "left",
+                    "stretch": "horizontal"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "constraints": {
+            "region": "right",
+            "position": "centre"
+          },
+          "type": "view",
+          "layout": "inline",
+          "direction": "vertical",
+          "spacing": 2,
+          "components": [
+            {
+              "constraints": {
+                "stretch": "horizontal"
+              },
+              "id": "rowAge",
+              "type": "label",
+              "textalign": "right",
+              "font": {
+                "size": 12,
+                "monospaced": "digits"
+              }
+            },
+            {
+              "constraints": {
+                "stretch": "horizontal"
+              },
+              "id": "rowState",
+              "type": "label",
+              "textalign": "right",
+              "font": {
+                "size": 11,
+                "weight": "semibold"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

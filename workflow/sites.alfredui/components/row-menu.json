@@ -1,0 +1,74 @@
+[
+  {
+    "text": "Open Site",
+    "action": {
+      "type": "json",
+      "variables": {
+        "target": "{data:openSite}"
+      },
+      "src": {
+        "finish": {
+          "args": "{var:target}"
+        }
+      }
+    }
+  },
+  {
+    "text": "Open Netlify Project",
+    "action": {
+      "type": "json",
+      "variables": {
+        "target": "{data:openProject}"
+      },
+      "src": {
+        "finish": {
+          "args": "{var:target}"
+        }
+      }
+    }
+  },
+  {
+    "text": "Open Deploys",
+    "action": {
+      "type": "json",
+      "variables": {
+        "target": "{data:openDeploys}"
+      },
+      "src": {
+        "finish": {
+          "args": "{var:target}"
+        }
+      }
+    }
+  },
+  {
+    "type": "separator"
+  },
+  {
+    "text": "Copy URL",
+    "action": {
+      "type": "json",
+      "variables": {
+        "target": "{data:copyURL}"
+      },
+      "src": {
+        "finish": {
+          "args": "{var:target}"
+        }
+      }
+    }
+  },
+  {
+    "type": "separator"
+  },
+  {
+    "text": "Sign out of Netlify",
+    "action": {
+      "type": "script",
+      "src": "scripts/ui",
+      "args": [
+        "sign-out"
+      ]
+    }
+  }
+]

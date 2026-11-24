@@ -1,0 +1,151 @@
+{
+  "watermark": false,
+  "fonts": "system",
+  "legend": false,
+  "eyebrow": "",
+  "motion": "trace",
+  "skin": "light",
+  "type": "flowchart",
+  "dir": "TB",
+  "title": "What appears in the preview?",
+  "subtitle": "Choose the cached picture first; load the live page only when embedding is allowed.",
+  "nodes": [
+    {
+      "id": "selected",
+      "label": "Site selected",
+      "shape": "terminal",
+      "row": 0,
+      "col": 1
+    },
+    {
+      "id": "eligible",
+      "label": "Published + URL?",
+      "shape": "decision",
+      "row": 1,
+      "col": 1
+    },
+    {
+      "id": "none",
+      "label": "No preview",
+      "shape": "terminal",
+      "kind": "muted",
+      "row": 1,
+      "col": 0
+    },
+    {
+      "id": "picture",
+      "label": "Show best picture",
+      "sub": "Render \u2192 screenshot \u2192 icon",
+      "focal": true,
+      "row": 2,
+      "col": 1
+    },
+    {
+      "id": "gate",
+      "label": "Live preview allowed?",
+      "sub": "Not demo; framing = true",
+      "shape": "decision",
+      "row": 3,
+      "col": 1
+    },
+    {
+      "id": "still",
+      "label": "Keep picture",
+      "sub": "Denied, unknown or demo",
+      "shape": "terminal",
+      "kind": "muted",
+      "row": 3,
+      "col": 0
+    },
+    {
+      "id": "load",
+      "label": "Load preview page",
+      "sub": "Picture beneath desktop iframe",
+      "row": 4,
+      "col": 1
+    },
+    {
+      "id": "fail",
+      "label": "Keep picture",
+      "sub": "Local page cannot be written",
+      "shape": "terminal",
+      "kind": "muted",
+      "row": 4,
+      "col": 2
+    },
+    {
+      "id": "live",
+      "label": "Fade in live page",
+      "sub": "When iframe loads",
+      "shape": "terminal",
+      "focal": true,
+      "row": 5,
+      "col": 1
+    }
+  ],
+  "edges": [
+    [
+      "selected",
+      "eligible"
+    ],
+    [
+      "eligible",
+      "none",
+      "no"
+    ],
+    [
+      "eligible",
+      "picture",
+      "yes",
+      "primary"
+    ],
+    [
+      "picture",
+      "gate"
+    ],
+    [
+      "gate",
+      "still",
+      "no"
+    ],
+    [
+      "gate",
+      "load",
+      "yes",
+      "primary"
+    ],
+    [
+      "load",
+      "fail",
+      "write fails"
+    ],
+    [
+      "load",
+      "live",
+      "loaded",
+      "primary"
+    ]
+  ],
+  "evidence": [
+    {
+      "id": "eligible",
+      "file": "Sources/NetlifyWindow/SitePresenter.swift",
+      "line": 49
+    },
+    {
+      "id": "picture",
+      "file": "Sources/NetlifyPictures/DeployPictures.swift",
+      "line": 69
+    },
+    {
+      "id": "gate",
+      "file": "Sources/NetlifyPictures/FramingCheck.swift",
+      "line": 23
+    },
+    {
+      "id": "live",
+      "file": "Sources/NetlifyWindow/PreviewPages.swift",
+      "line": 58
+    }
+  ]
+}

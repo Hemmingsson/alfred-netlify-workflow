@@ -1,0 +1,260 @@
+{
+  "bundleid": "work.mattias.alfred.netlify.sites",
+  "iconpath": "../icon.png",
+  "log": {
+    "level": "warning",
+    "internal": true
+  },
+  "variablesconfig": {
+    "query": {
+      "src": "args[0]",
+      "default": ""
+    },
+    "cache_minutes": {
+      "src": "variable",
+      "scriptenv": true
+    },
+    "selectedSiteID": {
+      "default": ""
+    },
+    "fingerprint": {
+      "default": ""
+    },
+    "netlify_demo": {
+      "src": "variable",
+      "scriptenv": true,
+      "default": ""
+    },
+    "previewSource": {
+      "default": "about:blank"
+    },
+    "emptyAction": {
+      "default": ""
+    }
+  },
+  "templates": {
+    "sectionHeader": {
+      "constraints": {
+        "stretch": "horizontal"
+      },
+      "type": "label",
+      "text": "{param:text}",
+      "colour": "tertiaryLabelColor",
+      "font": {
+        "size": 10,
+        "weight": "semibold"
+      }
+    },
+    "primaryValue": {
+      "constraints": {
+        "stretch": "horizontal"
+      },
+      "type": "label",
+      "selectable": true,
+      "linebreak": "truncatetail",
+      "font": {
+        "size": 13,
+        "weight": "medium"
+      }
+    },
+    "secondaryValue": {
+      "constraints": {
+        "stretch": "horizontal"
+      },
+      "type": "label",
+      "selectable": true,
+      "linebreak": "truncatetail",
+      "colour": "secondaryLabelColor",
+      "font": {
+        "size": 12
+      }
+    }
+  },
+  "pulse": {
+    "src": "scripts/ui",
+    "args": [
+      "pulse",
+      "{var:fingerprint}",
+      "{var:selectedSiteID}",
+      "{var:previewSource}"
+    ],
+    "intervalmode": "delay",
+    "interval": 0
+  },
+  "window": {
+    "title": "Netlify Sites",
+    "size": {
+      "width": 1100,
+      "height": 625
+    },
+    "padding": 0,
+    "root": {
+      "type": "view",
+      "layout": "stack",
+      "events": [
+        {
+          "triggers": "preload",
+          "action": {
+            "type": "script",
+            "src": "scripts/ui",
+            "args": [
+              "load",
+              "{var:query}"
+            ]
+          }
+        }
+      ],
+      "shortcuts": [
+        {
+          "shortcut": "↑",
+          "action": {
+            "type": "function",
+            "src": "sites",
+            "args": "selectprevious"
+          }
+        },
+        {
+          "shortcut": "↓",
+          "action": {
+            "type": "function",
+            "src": "sites",
+            "args": "selectnext"
+          }
+        },
+        {
+          "shortcut": "⌘↩",
+          "action": "{file:actions/open-project.json}"
+        },
+        {
+          "shortcut": "⌥↩",
+          "action": "{file:actions/copy-url.json}"
+        },
+        {
+          "shortcut": "⌘R",
+          "action": "{file:actions/refresh.json}"
+        }
+      ],
+      "components": [
+        {
+          "id": "mainContent",
+          "type": "view",
+          "layout": "border",
+          "components": [
+            {
+              "constraints": {
+                "region": "left",
+                "size": {
+                  "width": 400
+                }
+              },
+              "type": "view",
+              "layout": "border",
+              "padding": 12,
+              "spacing": 8,
+              "components": [
+                {
+                  "constraints": {
+                    "region": "top"
+                  },
+                  "id": "searchField",
+                  "type": "textfield",
+                  "text": "{var:query}",
+                  "placeholder": "Search Your Netlify Projects…",
+                  "placeholdercolour": {
+                    "light": "rgb(0, 0, 0, 0.3)",
+                    "dark": "rgb(255, 255, 255, 0.3)"
+                  },
+                  "background": "#00000022",
+                  "bordered": false,
+                  "focus": true,
+                  "focusring": false,
+                  "textinsets": {
+                    "horizontal": 10,
+                    "vertical": 8
+                  },
+                  "font": {
+                    "size": 18
+                  },
+                  "events": [
+                    {
+                      "triggers": "changed",
+                      "action": {
+                        "type": "function",
+                        "src": "sites",
+                        "args": "filterdata"
+                      }
+                    },
+                    {
+                      "triggers": "typingstopped",
+                      "action": {
+                        "type": "script",
+                        "async": true,
+                        "src": "scripts/ui",
+                        "args": [
+                          "filtered",
+                          "{value:sites.selected.uid}",
+                          "{value:searchField.text}"
+                        ]
+                      }
+                    },
+                    {
+                      "triggers": "actioned",
+                      "action": "{file:actions/open-site.json}"
+                    }
+                  ]
+                },
+                "{file:components/site-list.json}",
+                {
+                  "constraints": {
+                    "region": "bottom"
+                  },
+                  "type": "view",
+                  "layout": "border",
+                  "spacing": 8,
+                  "components": [
+                    {
+                      "constraints": {
+                        "region": "centre",
+                        "position": "left",
+                        "stretch": "horizontal"
+                      },
+                      "id": "statusLabel",
+                      "type": "label",
+                      "colour": "secondaryLabelColor",
+                      "font": {
+                        "size": 11
+                      }
+                    },
+                    {
+                      "id": "refreshButton",
+                      "type": "button",
+                      "bordered": false,
+                      "text": "Refresh  ⌘R",
+                      "font": {
+                        "size": 11
+                      },
+                      "contenttintcolour": "secondaryLabelColor",
+                      "tooltip": "Fetch the latest sites from Netlify",
+                      "events": [
+                        {
+                          "triggers": "actioned",
+                          "action": "{file:actions/refresh.json}"
+                        }
+                      ],
+                      "constraints": {
+                        "region": "right",
+                        "position": "centre"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "{file:components/detail-pane.json}"
+          ]
+        },
+        "{file:components/empty-pane.json}"
+      ]
+    }
+  }
+}

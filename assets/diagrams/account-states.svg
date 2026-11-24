@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="290" viewBox="0 0 1200 290" role="img" aria-labelledby="title desc"><title id="title">Account states</title><desc id="desc">Documentation wireframe based on the shipped Alfred window. Dashed slots show flexible content; solid fills show controls and selection.</desc><style>
+:root{--sc-paper:#fff;--sc-ink:#050505;--sc-muted:#626262;--sc-soft:#878787;--sc-fill:#f3f3f3;--sc-fill2:#e8e8e8;color-scheme:light}
+svg{display:block;background:#fff;color:#050505;font-family:'SF Mono',ui-monospace,Menlo,monospace}
+.well{fill:#f3f3f3;stroke:#050505;stroke-width:1.4}
+.hug{fill:#e8e8e8;stroke:#050505;stroke-width:1.1}
+.slot{fill:none;stroke:#626262;stroke-width:.8;stroke-dasharray:3 4;stroke-linecap:round}
+.empty{fill:none;stroke:#878787;stroke-width:.9;stroke-dasharray:7 5}
+.thin{fill:none;stroke:#050505;stroke-width:1}
+.rel{fill:none;stroke:#878787;stroke-width:.7;stroke-dasharray:4 5;stroke-linecap:round}
+.lead{fill:none;stroke:#878787;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
+.skeleton{fill:#d5d5d5;stroke:none}
+.action{fill:#e8e8e8;stroke:#c4c4c4;stroke-width:.8}
+.actiontext{font-size:12px;fill:#303030}
+.key{font-size:12px;fill:#626262}
+.dt{font-size:12px;fill:#050505;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.sl{font:500 9px 'SF Mono',ui-monospace,Menlo,monospace;fill:#626262;letter-spacing:.06em}
+.message{font-size:19px;font-weight:600;fill:#050505}.detail{font-size:14px;fill:#050505}.button{font-size:13px;font-weight:600;fill:#050505}
+.vt{font:500 17px 'SF Mono',ui-monospace,Menlo,monospace;fill:#050505}
+</style><rect width="1200" height="290" fill="#ffffff"/><g transform="translate(0 0)"><text x="24" y="24" class="vt" text-anchor="start">Signed out</text><rect x="24" y="41" width="366" height="226" rx="6" class="thin"/><rect x="71" y="102" width="272" height="24" rx="3" class="slot"/><text x="207.0" y="117.0" class="sl" text-anchor="middle">MESSAGE</text><rect x="71" y="137" width="272" height="18" rx="3" class="slot"/><text x="207.0" y="149.0" class="sl" text-anchor="middle">DETAIL</text><rect x="127" y="185" width="160" height="25" rx="3" class="action"/><text x="207.0" y="200.5" class="sl" text-anchor="middle">SIGN IN</text><text x="417" y="24" class="vt" text-anchor="start">Connecting</text><rect x="417" y="41" width="366" height="226" rx="6" class="thin"/><rect x="464" y="102" width="272" height="24" rx="3" class="slot"/><text x="600.0" y="117.0" class="sl" text-anchor="middle">MESSAGE</text><rect x="464" y="137" width="272" height="18" rx="3" class="slot"/><text x="600.0" y="149.0" class="sl" text-anchor="middle">DETAIL</text><rect x="491" y="185" width="110" height="25" rx="3" class="action"/><text x="546.0" y="200.5" class="sl" text-anchor="middle">TRY AGAIN</text><rect x="611" y="185" width="98" height="25" rx="3" class="action"/><text x="660.0" y="200.5" class="sl" text-anchor="middle">CANCEL</text><text x="810" y="24" class="vt" text-anchor="start">First refresh failed</text><rect x="810" y="41" width="366" height="226" rx="6" class="thin"/><rect x="857" y="102" width="272" height="24" rx="3" class="slot"/><text x="993.0" y="117.0" class="sl" text-anchor="middle">MESSAGE</text><rect x="857" y="137" width="272" height="18" rx="3" class="slot"/><text x="993.0" y="149.0" class="sl" text-anchor="middle">DETAIL</text><rect x="913" y="185" width="160" height="25" rx="3" class="action"/><text x="993.0" y="200.5" class="sl" text-anchor="middle">RETRY</text></g></svg>

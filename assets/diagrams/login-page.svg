@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="537" viewBox="0 0 1200 537" role="img" aria-labelledby="title desc"><title id="title">Signed-out login page and sign-in action</title><desc id="desc">Documentation wireframe based on the shipped Alfred window. Dashed slots show flexible content; solid fills show controls and selection.</desc><style>
+:root{--sc-paper:#fff;--sc-ink:#050505;--sc-muted:#626262;--sc-soft:#878787;--sc-fill:#f3f3f3;--sc-fill2:#e8e8e8;color-scheme:light}
+svg{display:block;background:#fff;color:#050505;font-family:'SF Mono',ui-monospace,Menlo,monospace}
+.well{fill:#f3f3f3;stroke:#050505;stroke-width:1.4}
+.hug{fill:#e8e8e8;stroke:#050505;stroke-width:1.1}
+.slot{fill:none;stroke:#626262;stroke-width:.8;stroke-dasharray:3 4;stroke-linecap:round}
+.empty{fill:none;stroke:#878787;stroke-width:.9;stroke-dasharray:7 5}
+.thin{fill:none;stroke:#050505;stroke-width:1}
+.rel{fill:none;stroke:#878787;stroke-width:.7;stroke-dasharray:4 5;stroke-linecap:round}
+.lead{fill:none;stroke:#878787;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
+.skeleton{fill:#d5d5d5;stroke:none}
+.action{fill:#e8e8e8;stroke:#c4c4c4;stroke-width:.8}
+.actiontext{font-size:12px;fill:#303030}
+.key{font-size:12px;fill:#626262}
+.dt{font-size:12px;fill:#050505;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.sl{font:500 9px 'SF Mono',ui-monospace,Menlo,monospace;fill:#626262;letter-spacing:.06em}
+.message{font-size:19px;font-weight:600;fill:#050505}.detail{font-size:14px;fill:#050505}.button{font-size:13px;font-weight:600;fill:#050505}
+.vt{font:500 17px 'SF Mono',ui-monospace,Menlo,monospace;fill:#050505}
+</style><rect width="1200" height="537" fill="#ffffff"/><g transform="translate(0 0)"><rect x="180" y="30" width="840" height="477" rx="8" class="thin"/><text x="600.0" y="228" class="message" text-anchor="middle">Not signed in to Netlify.</text><text x="600.0" y="260" class="detail" text-anchor="middle">Click Sign in to connect your account.</text><rect x="508.0" y="290" width="184" height="35" rx="6" class="action"/><text x="600.0" y="312" class="button" text-anchor="middle">Sign in to Netlify</text><circle cx="692.0" cy="308" r="1.7" fill="#050505"/><polyline points="692.0,308 1040,308 1048,308" class="lead"/><text x="1052" y="312" class="dt" text-anchor="start">Browser approval</text></g></svg>

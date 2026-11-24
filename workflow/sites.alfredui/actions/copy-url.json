@@ -1,0 +1,8 @@
+{
+  "type": "script",
+  "src": "scripts/ui",
+  "args": [
+    "finish",
+    "{value:sites.selected.copyURL}"
+  ]
+}

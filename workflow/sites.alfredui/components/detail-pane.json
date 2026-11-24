@@ -1,0 +1,555 @@
+{
+  "constraints": {
+    "region": "centre"
+  },
+  "id": "detailPane",
+  "type": "view",
+  "layout": "border",
+  "padding": 12,
+  "spacing": 12,
+  "cliptobounds": true,
+  "background": {
+    "light": "#ffffff66",
+    "dark": "#00000040"
+  },
+  "components": [
+    {
+      "constraints": {
+        "region": "centre"
+      },
+      "type": "view",
+      "layout": "border",
+      "spacing": 14,
+      "components": [
+        {
+          "constraints": {
+            "region": "top",
+            "size": {
+              "height": 457
+            }
+          },
+          "id": "browserView",
+          "type": "view",
+          "layout": "border",
+          "spacing": 0,
+          "cornerradius": 8,
+          "cliptobounds": true,
+          "components": [
+            {
+              "constraints": {
+                "region": "top"
+              },
+              "id": "browserBar",
+              "type": "view",
+              "layout": "border",
+              "padding": 6,
+              "spacing": 8,
+              "background": {
+                "light": "#0000000d",
+                "dark": "#ffffff12"
+              },
+              "components": [
+                {
+                  "constraints": {
+                    "region": "left",
+                    "position": "centre"
+                  },
+                  "type": "view",
+                  "layout": "inline",
+                  "spacing": 0,
+                  "components": [
+                    {
+                      "constraints": {
+                        "size": {
+                          "width": 26,
+                          "height": 22
+                        }
+                      },
+                      "type": "button",
+                      "bordered": false,
+                      "text": "",
+                      "image": {
+                        "type": "symbol",
+                        "src": "chevron.left",
+                        "size": {
+                          "width": 13
+                        }
+                      },
+                      "contenttintcolour": "secondaryLabelColor",
+                      "tooltip": "Back  ⌘[",
+                      "events": [
+                        {
+                          "triggers": "actioned",
+                          "action": {
+                            "type": "function",
+                            "src": "livePreview",
+                            "args": "back"
+                          }
+                        }
+                      ],
+                      "shortcut": "⌘["
+                    },
+                    {
+                      "constraints": {
+                        "size": {
+                          "width": 26,
+                          "height": 22
+                        }
+                      },
+                      "type": "button",
+                      "bordered": false,
+                      "text": "",
+                      "image": {
+                        "type": "symbol",
+                        "src": "chevron.right",
+                        "size": {
+                          "width": 13
+                        }
+                      },
+                      "contenttintcolour": "secondaryLabelColor",
+                      "tooltip": "Forward  ⌘]",
+                      "events": [
+                        {
+                          "triggers": "actioned",
+                          "action": {
+                            "type": "function",
+                            "src": "livePreview",
+                            "args": "forward"
+                          }
+                        }
+                      ],
+                      "shortcut": "⌘]"
+                    },
+                    {
+                      "constraints": {
+                        "size": {
+                          "width": 26,
+                          "height": 22
+                        }
+                      },
+                      "type": "button",
+                      "bordered": false,
+                      "text": "",
+                      "image": {
+                        "type": "symbol",
+                        "src": "arrow.clockwise",
+                        "size": {
+                          "width": 13
+                        }
+                      },
+                      "contenttintcolour": "secondaryLabelColor",
+                      "tooltip": "Reload",
+                      "events": [
+                        {
+                          "triggers": "actioned",
+                          "action": {
+                            "type": "function",
+                            "src": "livePreview",
+                            "args": "reload"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "constraints": {
+                    "region": "centre",
+                    "position": "centre",
+                    "stretch": "horizontal"
+                  },
+                  "type": "view",
+                  "layout": "border",
+                  "padding": 5,
+                  "cornerradius": 6,
+                  "background": {
+                    "light": "#ffffffb3",
+                    "dark": "#00000059"
+                  },
+                  "components": [
+                    {
+                      "constraints": {
+                        "region": "left",
+                        "position": "centre",
+                        "size": {
+                          "width": 14,
+                          "height": 14
+                        }
+                      },
+                      "id": "addressIcon",
+                      "type": "imageview",
+                      "resize": "fit",
+                      "contenttintcolour": "secondaryLabelColor",
+                      "image": {
+                        "type": "symbol",
+                        "src": "globe"
+                      }
+                    },
+                    {
+                      "constraints": {
+                        "region": "centre",
+                        "position": "left",
+                        "stretch": "horizontal"
+                      },
+                      "id": "addressLabel",
+                      "type": "label",
+                      "selectable": true,
+                      "linebreak": "truncatemiddle",
+                      "colour": "secondaryLabelColor",
+                      "font": {
+                        "size": 12
+                      }
+                    }
+                  ],
+                  "spacing": 7
+                }
+              ]
+            },
+            {
+              "constraints": {
+                "region": "centre"
+              },
+              "id": "previewBox",
+              "type": "view",
+              "layout": "stack",
+              "background": {
+                "light": "#00000014",
+                "dark": "#ffffff14"
+              },
+              "components": [
+                {
+                  "id": "pictureView",
+                  "type": "imageview",
+                  "resize": "fill"
+                },
+                {
+                  "id": "livePreview",
+                  "type": "webkitview",
+                  "src": "about:blank",
+                  "opacity": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "constraints": {
+            "region": "centre"
+          },
+          "type": "view",
+          "layout": "border",
+          "components": [
+            {
+              "constraints": {
+                "region": "top"
+              },
+              "type": "view",
+              "layout": "grid",
+              "cols": 2,
+              "rows": 1,
+              "spacing": 20,
+              "components": [
+                {
+                  "type": "view",
+                  "layout": "inline",
+                  "direction": "vertical",
+                  "spacing": 7,
+                  "components": [
+                    {
+                      "type": "template",
+                      "src": "sectionHeader",
+                      "params": {
+                        "text": "PROJECT"
+                      }
+                    },
+                    {
+                      "id": "projectNameRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "projectNameIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "shippingbox"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "primaryValue",
+                          "params": {},
+                          "id": "projectName"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "projectStackRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "projectStackIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "square.stack.3d.up"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "secondaryValue",
+                          "params": {},
+                          "id": "projectStack"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "projectDomainsRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "projectDomainsIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "globe"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "secondaryValue",
+                          "params": {},
+                          "id": "projectDomains"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "view",
+                  "layout": "inline",
+                  "direction": "vertical",
+                  "spacing": 7,
+                  "components": [
+                    {
+                      "type": "template",
+                      "src": "sectionHeader",
+                      "params": {
+                        "text": "LATEST DEPLOY"
+                      }
+                    },
+                    {
+                      "id": "deployMessageRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "deployMessageIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "text.bubble"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "primaryValue",
+                          "params": {},
+                          "id": "deployMessage"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "deployWhoRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "deployWhoIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "person"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "secondaryValue",
+                          "params": {},
+                          "id": "deployWho"
+                        }
+                      ]
+                    },
+                    {
+                      "id": "deployRefRow",
+                      "type": "view",
+                      "layout": "border",
+                      "spacing": 8,
+                      "components": [
+                        {
+                          "constraints": {
+                            "region": "left",
+                            "position": "centre",
+                            "size": {
+                              "width": 14,
+                              "height": 14
+                            }
+                          },
+                          "id": "deployRefIcon",
+                          "type": "imageview",
+                          "resize": "fit",
+                          "contenttintcolour": "tertiaryLabelColor",
+                          "image": {
+                            "type": "symbol",
+                            "src": "arrow.triangle.branch"
+                          }
+                        },
+                        {
+                          "constraints": {
+                            "region": "centre",
+                            "position": "left",
+                            "stretch": "horizontal"
+                          },
+                          "type": "template",
+                          "src": "secondaryValue",
+                          "params": {},
+                          "id": "deployRef"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "constraints": {
+        "region": "bottom",
+        "position": "right"
+      },
+      "type": "view",
+      "layout": "inline",
+      "spacing": 8,
+      "components": [
+        {
+          "type": "button",
+          "text": "Copy URL  ⌥↩",
+          "tooltip": "Copy the site URL and close",
+          "events": [
+            {
+              "triggers": "actioned",
+              "action": "{file:actions/copy-url.json}"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "text": "Netlify Project  ⌘↩",
+          "tooltip": "Open the project in the Netlify dashboard",
+          "events": [
+            {
+              "triggers": "actioned",
+              "action": "{file:actions/open-project.json}"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "text": "Open Site  ↩",
+          "tooltip": "Open the site in your browser",
+          "events": [
+            {
+              "triggers": "actioned",
+              "action": "{file:actions/open-site.json}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
