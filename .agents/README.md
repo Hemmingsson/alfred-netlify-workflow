@@ -1,6 +1,12 @@
 # Project skills
 
-These skills are bundled for agents working on this repository. Each folder includes its upstream license.
+These skills are bundled for agents working on this repository. Imported skills include their upstream licenses.
+
+The project-specific [create-diagram](skills/create-diagram/SKILL.md) and
+[create-wireframe](skills/create-wireframe/SKILL.md) skills share the
+[documentation visual style](visual-style.md), based on the finished diagrams
+and the refinements from both Macs. Use these copies instead of global skills
+with the same names. SeeCode and `resvg` are external rendering dependencies.
 
 | Skill | Source revision |
 |---|---|
