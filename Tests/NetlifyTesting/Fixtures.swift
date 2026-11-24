@@ -8,7 +8,10 @@ public enum Fixtures {
 
     /// An ISO 8601 date; crashes on a typo, which in a fixture is what we want.
     public static func date(_ iso: String) -> Date {
-        try! Date(iso, strategy: .iso8601)
+        if iso.contains(".") {
+            return try! Date(iso, strategy: .iso8601.year().month().day().time(includingFractionalSeconds: true))
+        }
+        return try! Date(iso, strategy: .iso8601)
     }
 
     /// A published production deploy from GitHub.
