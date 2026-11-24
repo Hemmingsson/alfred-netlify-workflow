@@ -75,7 +75,7 @@ This builds for the current Mac and installs into Alfred. It keeps workflow sett
 
 ## Icons, screenshots and diagrams
 
-Edit `assets/netlifylogo.icon` in Icon Composer. Run `scripts/export-icons.sh` to regenerate the light, dark and workflow PNGs. The export requires Xcode with Icon Composer. Apple’s renderer checks whether the document loads. The bundled third-party schema can lag behind newer Icon Composer formats.
+Edit `assets/netlifylogo.icon` in Icon Composer. Run `scripts/export-icons.sh` to regenerate the light, dark and workflow PNGs. The export requires Xcode with Icon Composer. Apple’s renderer checks whether the document loads. The bundled validator checks the source schema and asset references. Its project compatibility tests cover the current app format.
 
 `scripts/screenshot.sh` builds offline demo data and captures `assets/screenshot.png`. A temporary wallpaper window preserves Alfred’s blur. Set `SCREENSHOT_WALLPAPER` to use another image. The script removes its temporary `netlify_demo` setting on exit.
 

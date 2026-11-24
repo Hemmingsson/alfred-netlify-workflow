@@ -82,6 +82,13 @@ There is no `update` subcommand. Because `icon.json` is just JSON and the schema
 
 Prefer minimal, targeted edits — keep keys in their existing order, don't reformat the file, and only add a `-specializations` array when the user actually wants a per-appearance override. The `create_icon.py` CLI's output format (`sort_keys=True`, 2-space indent) is the target style if the file is being re-written wholesale.
 
+## Current app compatibility
+
+The project schema also accepts `specular: "inside"` or `"outside"` and
+`blur-material: null`, as saved by Icon Composer 27. Legacy boolean specular
+values and numeric blur amounts remain valid. Use the native renderer to check
+that a document opens in the installed app version.
+
 ## Validating a `.icon` or `icon.json`
 
 ```bash

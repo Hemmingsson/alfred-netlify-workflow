@@ -537,8 +537,11 @@
           "description": "Per-slot LiquidGlass.Mode overrides"
         },
         "specular": {
-          "type": "boolean",
-          "description": "LiquidGlass.Specular — highlight on/off"
+          "description": "Project compatibility update: legacy highlight on/off, or placement saved by Icon Composer 27.",
+          "anyOf": [
+            { "type": "boolean" },
+            { "enum": ["inside", "outside"] }
+          ]
         },
         "specular-specializations": {
           "$ref": "#/$defs/specializations-of-boolean",
@@ -553,8 +556,8 @@
           "description": "Icon Composer 2.0+. Per-slot specular highlight placement overrides"
         },
         "blur-material": {
-          "type": "number",
-          "description": "Icon Composer 2.0+. LiquidGlass blur material amount (0.0–1.0, default 0.5). This is the key Icon Composer 2 writes; it replaces the Icon Composer 1.x 'blur'.",
+          "type": ["number", "null"],
+          "description": "Project compatibility update: LiquidGlass blur material amount (0.0–1.0, default 0.5). Icon Composer 27 also writes null for an unset amount. Replaces the legacy blur key.",
           "minimum": 0,
           "maximum": 1
         },

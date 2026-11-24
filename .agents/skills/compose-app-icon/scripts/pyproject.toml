@@ -8,16 +8,6 @@ dependencies = [
     "jsonschema>=4.21",
 ]
 
-[dependency-groups]
-dev = [
-    "pytest>=8.0",
-    "ruff>=0.6",
-    "ty",
-]
-
 [tool.uv]
 package = false
 exclude-newer = "1 week"
-
-[tool.ty.environment]
-extra-paths = ["."]

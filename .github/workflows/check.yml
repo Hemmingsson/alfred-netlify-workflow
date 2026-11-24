@@ -23,6 +23,12 @@ jobs:
         run: |
           python3 .agents/skills/alfred-ui/scripts/check_ui.py workflow
           plutil -lint workflow/info.plist
+      - name: Icon source
+        run: |
+          python3 -m venv "$RUNNER_TEMP/icon-check"
+          "$RUNNER_TEMP/icon-check/bin/pip" install jsonschema==4.26.0
+          "$RUNNER_TEMP/icon-check/bin/python" -m unittest discover -s Tests/ToolTests
+          "$RUNNER_TEMP/icon-check/bin/python" .agents/skills/compose-app-icon/scripts/validate_icon.py assets/netlifylogo.icon
       - name: Shell syntax
         run: |
           bash -n scripts/build.sh
