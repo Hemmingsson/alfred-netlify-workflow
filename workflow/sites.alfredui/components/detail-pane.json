@@ -44,10 +44,7 @@
               "layout": "border",
               "padding": 6,
               "spacing": 8,
-              "background": {
-                "light": "#0000000d",
-                "dark": "#ffffff12"
-              },
+              "background": "#e9e9eb",
               "components": [
                 {
                   "constraints": {
@@ -75,7 +72,7 @@
                           "width": 13
                         }
                       },
-                      "contenttintcolour": "secondaryLabelColor",
+                      "contenttintcolour": "#42454a",
                       "tooltip": "Back  ⌘[",
                       "events": [
                         {
@@ -106,7 +103,7 @@
                           "width": 13
                         }
                       },
-                      "contenttintcolour": "secondaryLabelColor",
+                      "contenttintcolour": "#42454a",
                       "tooltip": "Forward  ⌘]",
                       "events": [
                         {
@@ -137,7 +134,7 @@
                           "width": 13
                         }
                       },
-                      "contenttintcolour": "secondaryLabelColor",
+                      "contenttintcolour": "#42454a",
                       "tooltip": "Reload",
                       "events": [
                         {
@@ -162,10 +159,7 @@
                   "layout": "border",
                   "padding": 5,
                   "cornerradius": 6,
-                  "background": {
-                    "light": "#ffffffb3",
-                    "dark": "#00000059"
-                  },
+                  "background": "#ffffff",
                   "components": [
                     {
                       "constraints": {
@@ -179,7 +173,7 @@
                       "id": "addressIcon",
                       "type": "imageview",
                       "resize": "fit",
-                      "contenttintcolour": "secondaryLabelColor",
+                      "contenttintcolour": "#42454a",
                       "image": {
                         "type": "symbol",
                         "src": "globe"
@@ -195,7 +189,7 @@
                       "type": "label",
                       "selectable": true,
                       "linebreak": "truncatemiddle",
-                      "colour": "secondaryLabelColor",
+                      "colour": "#42454a",
                       "font": {
                         "size": 12
                       }

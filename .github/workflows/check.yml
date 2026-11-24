@@ -1,0 +1,49 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Swift tests
+        run: swift test
+      - name: Alfred UI
+        run: |
+          python3 .agents/skills/alfred-ui/scripts/check_ui.py workflow
+          plutil -lint workflow/info.plist
+      - name: Shell syntax
+        run: |
+          bash -n scripts/build.sh
+          for script in scripts/screenshot.sh scripts/export-icons.sh workflow/sites.alfredui/scripts/ui; do
+            sh -n "$script"
+          done
+      - name: Documentation links
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          documents = [Path('README.md'), Path('.agents/README.md'), *Path('docs').glob('*.md')]
+          for document in documents:
+              text = document.read_text()
+              links = re.findall(r'\]\(([^)]+)\)', text)
+              links += re.findall(r'(?:src|srcset)="([^"]+)"', text)
+              for link in links:
+                  if re.match(r'[a-z]+:|#', link):
+                      continue
+                  target = document.parent / link.split('#')[0]
+                  if not target.exists():
+                      raise SystemExit(f'{document}: missing {link}')
+          PY

@@ -60,6 +60,8 @@ The Alfred Gallery needs a separate submission. See the [sharing guide](https://
 
 ## Development
 
+GitHub Actions runs the Swift tests, Alfred UI checks, shell syntax checks and local documentation link checks on pushes and pull requests.
+
 ```sh
 scripts/build.sh --debug --install
 ```

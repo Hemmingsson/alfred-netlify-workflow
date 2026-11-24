@@ -15,7 +15,7 @@ app.setActivationPolicy(.prohibited)
 let desktopHeight = NSScreen.screens[0].frame.height
 let cocoaBounds = NSRect(x: bounds.minX, y: desktopHeight - bounds.maxY, width: bounds.width, height: bounds.height)
 let screen = NSScreen.screens.first { $0.frame.intersects(cocoaBounds) } ?? NSScreen.screens[0]
-let backdrop = NSWindow(contentRect: screen.frame, styleMask: .borderless, backing: .buffered, defer: false)
+let backdrop = NSPanel(contentRect: screen.frame, styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
 backdrop.level = NSWindow.Level(rawValue: (info[kCGWindowLayer as String] as? Int ?? 0) - 1)
 backdrop.ignoresMouseEvents = true
 backdrop.hasShadow = false

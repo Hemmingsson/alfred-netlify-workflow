@@ -28,7 +28,6 @@ DIST="$ROOT/dist"
 STAGE="$DIST/Netlify"
 OUTPUT="$DIST/Netlify.alfredworkflow"
 PRODUCT="netlify"
-ENTITLEMENTS="$ROOT/scripts/netlify.entitlements" # used only if it exists; none are needed today
 
 ALFRED_APP="com.runningwithcrayons.Alfred"
 BUNDLE_ID="$(/usr/bin/plutil -extract bundleid raw "$WORKFLOW_SRC/info.plist")"
@@ -118,9 +117,6 @@ elif [ "$DEBUG" = 1 ]; then
   SIGN_ARGS+=(--sign "$IDENTITY" --timestamp=none) # no round trip to Apple's timestamp server
 else
   SIGN_ARGS+=(--sign "$IDENTITY" --timestamp)
-fi
-if [ -f "$ENTITLEMENTS" ]; then
-  SIGN_ARGS+=(--entitlements "$ENTITLEMENTS")
 fi
 
 step "Signing with $([ "$IDENTITY" = "-" ] && echo "ad-hoc identity (-)" || echo "$IDENTITY_NAME")"

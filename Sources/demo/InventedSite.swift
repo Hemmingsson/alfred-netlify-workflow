@@ -3,16 +3,10 @@ import NetlifyCore
 
 /// A made-up demo site, described by what shows in its row and detail pane.
 struct InventedSite {
-    /// The newest production deploy, when it isn't the published one.
-    enum NewestDeploy {
-        case building(hoursAgo: Double)
-        case failed(hoursAgo: Double, message: String)
-
-        var hoursAgo: Double {
-            switch self {
-            case .building(let hours), .failed(let hours, _): hours
-            }
-        }
+    /// An unpublished failed deploy, shown alongside the live site.
+    struct FailedDeploy {
+        var hoursAgo: Double
+        var message: String
     }
 
     var picture: String
@@ -25,7 +19,7 @@ struct InventedSite {
     var committer = ""
     var framework = ""
     var functions = 0
-    var newest: NewestDeploy?
+    var newest: FailedDeploy?
     var isLocked = false
 
     func site(index: Int, now: Date) -> Site {
@@ -71,18 +65,13 @@ struct InventedSite {
         String(format: "%07x", (index + 7) * 2_654_435_761 & 0xFFF_FFFF)
     }
 
-    private func newestDeploy(_ newest: NewestDeploy, of published: Deploy, createdAt: Date) -> Deploy {
+    private func newestDeploy(_ newest: FailedDeploy, of published: Deploy, createdAt: Date) -> Deploy {
         var deploy = published
         deploy.id = "newer"
         deploy.createdAt = createdAt
         deploy.publishedAt = nil
-        switch newest {
-        case .building:
-            deploy.state = "building"
-        case .failed(_, let message):
-            deploy.state = "error"
-            deploy.errorMessage = message
-        }
+        deploy.state = "error"
+        deploy.errorMessage = newest.message
         return deploy
     }
 }

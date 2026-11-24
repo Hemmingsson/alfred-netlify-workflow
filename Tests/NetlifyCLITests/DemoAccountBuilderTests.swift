@@ -51,13 +51,19 @@ struct DemoAccountBuilderTests {
         #expect(pictures.adopted.first?.favicon?.lastPathComponent == "blandband.svg")
     }
 
-    @Test func inventedSitesShowTheirExceptions() throws {
+    @Test func demoSitesShowTheirExceptions() throws {
         let folder = scratchFolder()
         defer { try? FileManager.default.removeItem(at: folder.deletingLastPathComponent()) }
         let sites = try builder(RecordingPictures()).build(into: folder)
 
+        let selected = try #require(sites.first)
+        #expect(selected.name == "blandband")
+        #expect(selected.newestDeploy?.state == "building")
+        #expect(selected.newestDeploy?.id != selected.publishedDeploy?.id)
+        #expect(selected.publishedDeploy?.state == "ready")
+        #expect(selected.newestDeploy?.publishedAt == nil)
         let padgrid = try #require(sites.first { $0.name == "padgrid" })
-        #expect(padgrid.newestDeploy?.state == "building")
+        #expect(padgrid.newestDeploy == nil)
         let switchboard = try #require(sites.first { $0.name == "switchboard" })
         #expect(switchboard.newestDeploy?.state == "error")
         #expect(switchboard.newestDeploy?.errorMessage == "Build script returned non-zero exit code: 2")
