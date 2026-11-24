@@ -29,7 +29,7 @@ public struct JobLock: Sendable {
     }
 
     /// Run `body` holding the lock; nil, without running it, when the lock is already held.
-    public func tryHolding<T>(
+    public func tryHolding<T: Sendable>(
         isolation: isolated (any Actor)? = #isolation,
         _ body: () async throws -> T
     ) async rethrows -> T? {
@@ -40,7 +40,7 @@ public struct JobLock: Sendable {
     }
 
     /// Run `body` holding the lock, first waiting for whoever holds it.
-    public func holding<T>(
+    public func holding<T: Sendable>(
         isolation: isolated (any Actor)? = #isolation,
         _ body: () async throws -> T
     ) async rethrows -> T {

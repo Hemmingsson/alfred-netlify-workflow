@@ -1,6 +1,6 @@
 // The demo tool for README screenshots (scripts/screenshot.sh runs it):
 //
-//     swift run demo build <folder>    write a demo account folder: made-up sites, pictures and favicons from demo/
+//     swift run demo build <folder>    write a demo account folder: demo sites, pictures and favicons from demo/
 //
 // The workflow reads that folder instead of the Netlify account when `netlify_demo` points at it.
 import Foundation

@@ -62,12 +62,13 @@ struct DemoAccountBuilderTests {
         #expect(selected.newestDeploy?.id != selected.publishedDeploy?.id)
         #expect(selected.publishedDeploy?.state == "ready")
         #expect(selected.newestDeploy?.publishedAt == nil)
-        let padgrid = try #require(sites.first { $0.name == "padgrid" })
-        #expect(padgrid.newestDeploy == nil)
-        let switchboard = try #require(sites.first { $0.name == "switchboard" })
-        #expect(switchboard.newestDeploy?.state == "error")
-        #expect(switchboard.newestDeploy?.errorMessage == "Build script returned non-zero exit code: 2")
-        #expect(sites.first { $0.name == "harbourmag" }?.publishedDeploy?.isLocked == true)
+        #expect(sites.dropFirst().allSatisfy { $0.newestDeploy == nil })
+        #expect(sites.map { $0.url?.host() } == [
+            "bland.band", "autonomous-streamdeck-icons.mattias.work", "not.toys",
+            "depiction.paradisearchitects.com", "aet-streamdeck-results.mattias.work",
+            "einride-dashboard.mattias.work", "xn--spo-qla.com", "dancemusic.wtf",
+            "mattias.stream", "electricbeer.tech",
+        ])
     }
 
     @Test func aRealSiteKeepsItsPunycodeDomain() throws {
