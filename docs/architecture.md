@@ -74,7 +74,6 @@ Refresh fetches the newest deploy status for the 12 most recently updated sites.
 
 Pictures, favicons and framing checks run once per published deploy. The picture stays visible until the live page loads.
 
-
 - Renders use a 1440×900 offscreen WebKit view and an ephemeral session. The queue processes one page at a time. The latest waiting selection wins.
 - Capture waits six seconds after load, or ten seconds after commit once interactive. The limit is 30 seconds.
 - Thumbnails are 320×200, cropped from the top and centred horizontally. Better pictures use new thumbnail paths to bypass Alfred’s image cache.

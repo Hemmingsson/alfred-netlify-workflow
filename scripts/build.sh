@@ -73,6 +73,7 @@ step "Staging $STAGE"
 rm -rf "$STAGE"
 mkdir -p "$STAGE"
 /usr/bin/ditto "$WORKFLOW_SRC" "$STAGE"
+/usr/bin/ditto "$ROOT/LICENSE" "$STAGE/LICENSE"
 /usr/bin/ditto "$BINARY" "$STAGE/$PRODUCT"
 find "$STAGE" -name .DS_Store -delete
 chmod 755 "$STAGE/$PRODUCT" "$STAGE"/sites.alfredui/scripts/*

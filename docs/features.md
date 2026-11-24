@@ -18,7 +18,7 @@ See the [README](../README.md) for installation and shortcuts.
 
 ## Project and deploy details
 
-**PROJECT** shows the name or deployment source, framework, functions, forms, domains and access warnings. Scheduled and edge functions count as functions. Missing stack information shows “Static site”.
+**PROJECT** shows the name or deployment source, framework, functions, forms, domains and access warnings. Scheduled functions appear in the function count. Edge functions have a separate label. Missing stack information shows “Static site”.
 
 **LATEST DEPLOY** shows the live deploy, unless a newer production deploy failed or is building. Details include the message, committer, local publish time, branch and short commit.
 
@@ -31,7 +31,7 @@ Failed and building deploys show their status and time. Locked means automatic p
 The preview first shows a cached picture: a local render, Netlify screenshot, or the workflow icon, in that order. It then loads the live page if the site allows embedding. Sites without a published deploy or URL have no preview.
 
 - Blocked, unknown or unreachable pages keep the picture visible.
-- Selecting a site requests a new render. It takes no focus and plays no sound.
+- Selecting a site requests a render if that deploy has none. Rendering takes no focus and plays no sound.
 - ⌘[ and ⌘] move through preview history. Selecting another site resets history.
 - Reload shows the picture while the page loads. Links inside the page do not change the address field.
 - Failed pictures and favicons retry after 24 hours. The workflow removes old pictures and thumbnails in the background.

@@ -10,7 +10,7 @@ Browse your Netlify sites from Alfred. Search by name, domain or repo, preview a
 
 ![Site browser](assets/screenshot.png)
 
-Requires **Alfred 6 with Powerpack** and **macOS 14 or later**. Works on Apple Silicon and Intel Macs. No Python, Node.js or other runtime needed.
+Requires **Alfred 6 with Powerpack** and **macOS 14 or later**. Written in Swift, with native support for Apple Silicon and Intel Macs.
 
 ## Install
 
@@ -52,3 +52,7 @@ scripts/build.sh --debug --install
 ```
 
 See [architecture](docs/architecture.md) for code structure and [releasing](docs/releasing.md) for signed builds.
+
+## License
+
+[MIT](LICENSE). Bundled agent skills retain their [upstream licenses](.agents/README.md).

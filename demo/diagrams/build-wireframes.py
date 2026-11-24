@@ -7,27 +7,28 @@ Run from any directory: python3 demo/diagrams/build-wireframes.py.
 """
 from pathlib import Path
 from html import escape
+from theme import theme_css
 
 ROOT = Path(__file__).resolve().parents[2] / 'assets' / 'diagrams'
 ROOT.mkdir(parents=True, exist_ok=True)
 CSS = '''
-:root{--sc-paper:#fff;--sc-ink:#050505;--sc-muted:#626262;--sc-soft:#878787;--sc-fill:#f3f3f3;--sc-fill2:#e8e8e8;color-scheme:light}
-svg{display:block;background:#fff;color:#050505;font-family:'SF Mono',ui-monospace,Menlo,monospace}
-.well{fill:#f3f3f3;stroke:#050505;stroke-width:1.4}
-.hug{fill:#e8e8e8;stroke:#050505;stroke-width:1.1}
-.slot{fill:none;stroke:#626262;stroke-width:.8;stroke-dasharray:3 4;stroke-linecap:round}
-.empty{fill:none;stroke:#878787;stroke-width:.9;stroke-dasharray:7 5}
-.thin{fill:none;stroke:#050505;stroke-width:1}
-.rel{fill:none;stroke:#878787;stroke-width:.7;stroke-dasharray:4 5;stroke-linecap:round}
-.lead{fill:none;stroke:#878787;stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
-.skeleton{fill:#d5d5d5;stroke:none}
-.action{fill:#e8e8e8;stroke:#c4c4c4;stroke-width:.8}
-.actiontext{font-size:12px;fill:#303030}
-.key{font-size:12px;fill:#626262}
-.dt{font-size:12px;fill:#050505;paint-order:stroke;stroke:#fff;stroke-width:3px}
-.sl{font:500 9px 'SF Mono',ui-monospace,Menlo,monospace;fill:#626262;letter-spacing:.06em}
-.message{font-size:19px;font-weight:600;fill:#050505}.detail{font-size:14px;fill:#050505}.button{font-size:13px;font-weight:600;fill:#050505}
-.vt{font:500 17px 'SF Mono',ui-monospace,Menlo,monospace;fill:#050505}
+
+svg{display:block;background:var(--sc-paper);color:var(--sc-ink);font-family:'SF Mono',ui-monospace,Menlo,monospace}
+.well{fill:var(--sc-fill);stroke:var(--sc-ink);stroke-width:1.4}
+.hug{fill:var(--sc-fill2);stroke:var(--sc-ink);stroke-width:1.1}
+.slot{fill:none;stroke:var(--sc-muted);stroke-width:.8;stroke-dasharray:3 4;stroke-linecap:round}
+.empty{fill:none;stroke:var(--sc-soft);stroke-width:.9;stroke-dasharray:7 5}
+.thin{fill:none;stroke:var(--sc-ink);stroke-width:1}
+.rel{fill:none;stroke:var(--sc-soft);stroke-width:.7;stroke-dasharray:4 5;stroke-linecap:round}
+.lead{fill:none;stroke:var(--sc-soft);stroke-width:.8;stroke-linecap:round;stroke-linejoin:round}
+.skeleton{fill:var(--sc-skeleton);stroke:none}
+.action{fill:var(--sc-fill2);stroke:var(--sc-border);stroke-width:.8}
+.actiontext{font-size:12px;fill:var(--sc-ink)}
+.key{font-size:12px;fill:var(--sc-muted)}
+.dt{font-size:12px;fill:var(--sc-ink);paint-order:stroke;stroke:var(--sc-paper);stroke-width:3px}
+.sl{font:500 9px 'SF Mono',ui-monospace,Menlo,monospace;fill:var(--sc-muted);letter-spacing:.06em}
+.message{font-size:19px;font-weight:600;fill:var(--sc-ink)}.detail{font-size:14px;fill:var(--sc-ink)}.button{font-size:13px;font-weight:600;fill:var(--sc-ink)}
+.vt{font:500 17px 'SF Mono',ui-monospace,Menlo,monospace;fill:var(--sc-ink)}
 '''
 
 class Sheet:
@@ -45,13 +46,13 @@ class Sheet:
         self.rect(x,y,w,h,cls,3)
         self.text(x+w/2,y+h/2+3,label,'sl','middle')
     def callout(self,px,py,ex,ey,label,side=1):
-        self.parts.append(f'<circle cx="{px}" cy="{py}" r="1.7" fill="#050505"/>')
+        self.parts.append(f'<circle cx="{px}" cy="{py}" r="1.7" fill="var(--sc-ink)"/>')
         self.parts.append(f'<polyline points="{px},{py} {ex},{ey} {ex+side*8},{ey}" class="lead"/>')
         self.text(ex+side*12,ey+4,label,'dt','start' if side>0 else 'end')
     def save(self,slug,label):
-        svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{self.height}" viewBox="0 0 1200 {self.height}" role="img" aria-labelledby="title desc"><title id="title">{escape(label)}</title><desc id="desc">Documentation wireframe based on the shipped Alfred window. Dashed slots show flexible content; solid fills show controls and selection.</desc><style>{CSS}</style><rect width="1200" height="{self.height}" fill="#ffffff"/>'+f'<g transform="translate(0 {-self.trim})">'+''.join(self.parts)+'</g></svg>\n'
+        svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{self.height}" viewBox="0 0 1200 {self.height}" role="img" aria-labelledby="title desc"><title id="title">{escape(label)}</title><desc id="desc">Documentation wireframe based on the shipped Alfred window. Dashed slots show flexible content; solid fills show controls and selection.</desc><style>{CSS}{theme_css()}</style><rect width="1200" height="{self.height}" fill="var(--sc-paper)"/>'+f'<g transform="translate(0 {-self.trim})">'+''.join(self.parts)+'</g></svg>\n'
         (ROOT/(slug+'.svg')).write_text(svg)
-        html = f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(label)}</title><style>html,body{{margin:0;background:#fff}}svg{{max-width:100%;height:auto}}</style></head><body><main>{svg}</main></body></html>\n'
+        html = f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{escape(label)}</title><style>html,body{{margin:0}}svg{{max-width:100%;height:auto}}</style></head><body><main>{svg}</main></body></html>\n'
         (ROOT/(slug+'.html')).write_text(html)
 
 # Vector counterparts of the SF Symbols used by detail-pane.json.
@@ -68,7 +69,7 @@ def icon(s,x,y,name,size=14):
         'person': '<circle cx="12" cy="6" r="4"/><path d="M3 22 V19 C3 11 21 11 21 19 V22 Z"/>',
         'arrow.triangle.branch': '<path d="M6 21 V4 M3 7 L6 3 L9 7 M6 15 C6 10 18 14 18 7 V3 M15 6 L18 2 L21 6"/>',
     }
-    s.parts.append(f'<g transform="translate({x} {y}) scale({size/24})" fill="none" stroke="#626262" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{paths[name]}</g>')
+    s.parts.append(f'<g transform="translate({x} {y}) scale({size/24})" fill="none" stroke="var(--sc-muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{paths[name]}</g>')
 
 def browser_bar(s,x,y,w):
     s.rect(x,y,w,30,'well',0)
@@ -163,16 +164,3 @@ for i,(title,kind) in enumerate([('Signed out','sign-in'),('Connecting','connect
     else:
         s.slot(xx+103,185,160,25,('SIGN IN' if kind=='sign-in' else 'RETRY')+'','action')
 s.save('account-states','Account states')
-
-
-# Signed-out page: emptyPane replaces the entire list/detail split.
-# Copy and available action match EmptyState.signedOut and empty-pane.json.
-s=Sheet(537, trim=0)
-x,y,w,h=180,30,840,477
-s.rect(x,y,w,h,'thin',8)
-s.text(x+w/2,y+198,'Not signed in to Netlify.','message','middle')
-s.text(x+w/2,y+230,'Click Sign in to connect your account.','detail','middle')
-s.rect(x+w/2-92,y+260,184,35,'action',6)
-s.text(x+w/2,y+282,'Sign in to Netlify','button','middle')
-s.callout(x+w/2+92,y+278,1040,y+278,'Browser approval')
-s.save('login-page','Signed-out login page and sign-in action')

@@ -52,7 +52,7 @@ Use an Apple app-specific password or App Store Connect API key. Keep credential
 
 Release notes must describe changes, link the workflow download and state requirements.
 
-The archive root must contain `info.plist`, icons, the `.alfredui` bundle and the executable. Exclude build products, local preferences and account data.
+The archive root must contain `info.plist`, `LICENSE`, icons, the `.alfredui` bundle and the executable. Exclude build products, local preferences and account data.
 
 A standalone binary cannot carry a stapled notarisation ticket. Gatekeeper retrieves the ticket online on first use. This binary needs no extra entitlements.
 
@@ -71,7 +71,9 @@ This builds for the current Mac and installs into Alfred. It keeps workflow sett
 | `ALFRED_WORKFLOWS_DIR` | Install destination |
 | `PACKAGE_DIR` | Swift package path |
 
-## Screenshots and diagrams
+## Icons, screenshots and diagrams
+
+Edit `assets/netlifylogo.icon` in Icon Composer. Run `scripts/export-icons.sh` to regenerate the light, dark and workflow PNGs. The export requires Xcode with Icon Composer. Apple’s renderer checks whether the document loads. The bundled third-party schema can lag behind newer Icon Composer formats.
 
 `scripts/screenshot.sh` builds offline demo data and captures `assets/screenshot.png`. A temporary wallpaper window preserves Alfred’s blur. Set `SCREENSHOT_WALLPAPER` to use another image. The script removes its temporary `netlify_demo` setting on exit.
 
@@ -82,4 +84,4 @@ python3 demo/diagrams/build-wireframes.py
 python3 demo/diagrams/style-diagrams.py
 ```
 
-The PNG renderer needs `resvg`. Both scripts work from any directory.
+SVG and HTML exports follow the viewer’s light or dark preference. PNG exports use the light palette. The PNG renderer needs `resvg`. Both scripts work from any directory.

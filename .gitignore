@@ -7,3 +7,8 @@ demo/.cache/
 # Local agent state
 .atelier/
 .claude/
+
+# Python tools
+.venv/
+__pycache__/
+.pytest_cache/
